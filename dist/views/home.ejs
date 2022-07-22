@@ -1,0 +1,75 @@
+<% layout('layouts/boilerplate') %>
+
+<div class="row">
+    <div class="col-5">
+        <img id="main-img" src="https://news.files.bbci.co.uk/vj/live/idt-images/image-slider-hello/SMOG_vdyw4.jpg" alt="">
+    </div>
+    <div class="col center-vertical" id="title">
+        <h1>Delhi smog: How many cigarettes did you smoke this week?</h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col" id="art-info">
+        <p>Author: <span class="text-muted">By me!</span> | Date: <span class="text-muted">20 November 2017 </span> | Category: <a href="http://www.bbc.co.uk/news/world/asia/india">India</a></p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <div id="cluster-map"></div>
+        <p class="text-center fw-bold">Total Cities in Study: <span class="text-muted">32</span></p>
+    </div>
+    <div class="col center-vertical">
+        <p class="map-text"><span class="big-text">Breathing in Delhi is close to smoking more than a dozen cigarettes a day on an average.</span> Click on your city to find out how many cigarettes you are smoking</p>
+    </div>
+</div>
+<div class="row mb-5">
+    <div class="col-8 info-text">
+        <p><span class="big-text">O</span>n November 7, Indian capital, Delhi woke up to a blanket of thick grey smog.  The toxic haze was so severe that politicians announced plans to close schools. United Airlines shut all of its flights from the US to Delhi. Visibility was poor as pollution levels reached 30 times the World Health Organization's recommended limit in some areas.</p>
+        <p>According to the data from the System of Air Quality Weather Forecasting and Research website, the levels of tiny particulate matter (known as PM 2.5) that enter deep into the lungs reached as high as 700 micrograms per cubic metre in some areas of Delhi on November 6th. The air quality standard for PM 2.5 is 15 µg/m3 and anything above 81 µg/m3 falls under poor air quality standard.</p>
+        <p>Some reports claimed that New Delhi's air quality was so severe it was equivalent to smoking 45 cigarettes a day. We looked at the data to see if this was true.</p>
+        <p>Click on your city to find out how many cigarettes you have effectively smoked because of last week's pollution.</p>
+        
+        <blockquote class="blockquote">
+            <p>1 cigarette is equivalent to an air pollution of 22 μg/m3 (Absolute value: 21.6 μg/m3) for one day.</p>
+        </blockquote>
+        
+        <p><span class="big-text">A</span> report by Berkeley Earth showed that in China, 1.6 million people die every year from an average exposure of 52 μg/m3 of PM2.5. To kill 1.6 million people would require, assuming 1.36 x9^6 deaths per cigarette, 1.1 trillion cigarettes. Since the population of China is 1.35 billion, that comes to 764 cigarettes every year per person, or about 2.4 cigarettes per day.</p>
+        <p> Put another way, one cigarette is equivalent to an air pollution of 22 μg/m3 (Absolute value: 21.6 μg/m3) for one day.</p>
+        <p>The average PM2.5 in Beijing over the year is about 85 μg/m3, equivalent to about 4 cigarettes per day. Similarly, if the air pollution in New Delhi, India, is 546 μg/m3, it is equivalent to about 25 cigarettes each day.</p>
+        <p class="mb-0">Methodology for calculation: </p>
+        <p>We took the PM 2.5 data of 32 cities in India every day for one week. We calculated the mean of 6 days PM 2.5 data of each city and divided it by 21.6 μg/m3 to get the number of cigarettes. It is also imperative to say the numbers shown is the assumption that you ideally spent most of your time breathing air from outside.</p>
+    </div>
+    <div class="col">
+        <h2></h2>
+        <form id="city-select-box">
+            <label class="fw-bold" for="city-selector">Select your city: </label>
+            <select name="city-selector" id="city-selector">
+                <option value="none">-</option>
+                <% for (let city of cities) {%>
+                    <option value='{"aqi": "<%= city.aqi %>", "cigs": "<%= city.cig %>"}'><%= city.name %></option>
+                <% } %>
+            </select>
+            <p class="mt-3"><span class="fw-bold">AQI:</span> <span id="city-aqi"></span></p>
+            <p><span class="fw-bold"> The same as smoking:</span></p>
+            <div class="row">
+                <div class="col-5" id="smoke-icons">
+                    <!-- Cigarette icons go here -->
+                </div>
+                <div class="col d-flex align-items-center">
+                    <p id="city-cigs"></p>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Scripts -->
+<script>
+    const mapToken = '<%-process.env.MAPBOX_TOKEN%>';
+    const cities = {features: <%- JSON.stringify(cities) %>};
+</script>
+
+<script src="/javascript/clusterMap.js"></script>
+<script src="/javascript/citySelect.js"></script>

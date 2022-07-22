@@ -1,0 +1,18 @@
+{
+  "name": "bbc_coding_task",
+  "version": "1.0.0",
+  "description": "You have been given some data by the editorial department in the `./src/data` directory.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@mapbox/mapbox-sdk": "^0.13.4",
+    "dotenv": "^16.0.1",
+    "ejs-mate": "^4.0.0",
+    "express": "^4.18.1"
+  }
+}
