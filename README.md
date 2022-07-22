@@ -4,7 +4,7 @@ This is my submission for the Air Quality coding task.
 
 ## Instructions
 
-Please navigate into the dist folder using node. Then simply run 'node app.js', and open a browser to 'localhost:3000'.
+Please navigate into the dist folder using node, and install the required modules by running 'npm install'. Then simply run 'node app.js', and open a browser to 'localhost:3000'.
 
 ## Statement
 
@@ -14,4 +14,4 @@ I have included a seeds folder outside the 'dist' submission, this is simply a s
 
 Many thanks for the opportunity, I look forward to hearing from you soon!
 
-    - Alex Stockwell
+- Alex Stockwell
